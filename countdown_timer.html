@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      <!--
+      count = 0;
+      interval = 0;
+
+      function startTimer(){
+        if(document.myForm.startButton.value = "reset"){
+          clearInterval(interval);
+        }
+        selectedTime = document.myForm.myMenu.selectedIndex;
+        count = eval (document.myForm.myMenu.options[selectedTime].value);
+        interval = setInterval("countAndShow()", 1000);
+        document.myForm.startButton.value = "reset"
+      }
+
+      function countAndShow(){
+        count = count - 1;
+        document.getElementById("countdownseconds").innerHTML = parseInt(count / 60) + ":" + (count % 60);
+        if(count == 0){
+          clearInterval(interval);
+          alert("Finish.");
+        }
+      }
+
+      function stopOrRestartTimer(){
+        if(document.myForm.stopButton.value == "stop"){
+          clearInterval(interval);
+          document.myForm.stopButton.value = "restart"
+        }else if(count != 0){ // not init state(count == 0)
+          interval = setInterval("countAndShow()", 1000);
+          document.myForm.stopButton.value = "stop"
+        }
+      }
+    // --></script>
+  </head>
+
+  <body>
+    <form name="myForm">
+      <div align="center">
+        <select name="myMenu">
+          <option value="1500">25min</option>
+          <option value="30">30sec</option>
+        </select>
+        <input type="button" name="startButton" value="GO!" onclick="startTimer()"><BR><BR>
+      <SPAN ID="countdownseconds"></SPAN><BR><BR>
+      <!--<input type="button" value="close" onclick="window.close()"> -->
+      <input type="button" name="stopButton" value="stop" onclick="stopOrRestartTimer()">
+      </div>
+    </form>
+  </body>
+</html>
