@@ -6,9 +6,10 @@
       interval = 0;
 
       function startTimer(){
-        if(document.myForm.startButton.value = "reset"){
+        if(document.myForm.startButton.value == "reset"){
           clearInterval(interval);
         }
+        document.myForm.stopButton.value = "stop"
         selectedTime = document.myForm.myMenu.selectedIndex;
         count = eval (document.myForm.myMenu.options[selectedTime].value);
         interval = setInterval("countAndShow()", 1000);
@@ -20,7 +21,7 @@
         document.getElementById("countdownseconds").innerHTML = parseInt(count / 60) + ":" + (count % 60);
         if(count == 0){
           clearInterval(interval);
-          alert("Finish.");
+          window.open('finish.html', 'mywindow', 'width=20, height=15, menubar=no, toolbar=no, scrollbars=yes');
         }
       }
 
@@ -42,6 +43,7 @@
         <select name="myMenu">
           <option value="1500">25min</option>
           <option value="30">30sec</option>
+          <option value="1">1sec</option>
         </select>
         <input type="button" name="startButton" value="GO!" onclick="startTimer()"><BR><BR>
       <SPAN ID="countdownseconds"></SPAN><BR><BR>
